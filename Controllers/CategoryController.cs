@@ -37,10 +37,13 @@ namespace CategoryMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj )
         {
-            _db.CategoryList.Add(obj); // Adding to Table obj which was created in ApplicationDBConext
-            _db.SaveChanges();    // saving the Database
-            return RedirectToAction("Index"); // to redirect to CategoryList
-                        
+            if (ModelState.IsValid)
+            {
+                _db.CategoryList.Add(obj); // Adding to Table obj which was created in ApplicationDBConext
+                _db.SaveChanges();    // saving the Database
+                return RedirectToAction("Index"); // to redirect to CategoryList
+            }
+            else return View(obj);
         }
 
     }

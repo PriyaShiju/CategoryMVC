@@ -12,6 +12,8 @@ namespace CategoryMVC.Models
         [Key]
         public int CategoryId { get; set; }
        
+        [Required]
+        //[Range(1, int.Maxvalue,ErrorMessage="Not valid Number")]
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }
 

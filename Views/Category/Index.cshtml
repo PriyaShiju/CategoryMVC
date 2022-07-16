@@ -31,8 +31,11 @@
                                 <td width="50%">
                                     @obj.CategoryName
                                 </td>
-                                <td>
-
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary" asp-controller="Category" asp-action="Edit"> Edit</a>
+                                        <a class="btn btn-primary" asp-controller="Category" asp-action="Delete"> Delete </a>
+                                    </div>
                                 </td>
                             </tr>
                         }
