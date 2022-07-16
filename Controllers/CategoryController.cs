@@ -23,6 +23,8 @@ namespace CategoryMVC.Controllers
             return View(obj);
         }
 
+        //Get create
+        [HttpGet]
         public IActionResult Create()
         {
             
@@ -30,7 +32,16 @@ namespace CategoryMVC.Controllers
             return View();
         }
 
-
+        //Post create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj )
+        {
+            _db.CategoryList.Add(obj); // Adding to Table obj which was created in ApplicationDBConext
+            _db.SaveChanges();    // saving the Database
+            return RedirectToAction("Index"); // to redirect to CategoryList
+                        
+        }
 
     }
 }
