@@ -31,6 +31,22 @@ namespace CategoryMVC.Controllers
 
             return View();
         }
+        [HttpGet]
+        public IActionResult Edit( int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.CategoryList.Find(Id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
 
         //Post create
         [HttpPost]
