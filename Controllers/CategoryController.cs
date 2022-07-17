@@ -47,7 +47,49 @@ namespace CategoryMVC.Controllers
             return View(obj);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.CategoryList.Update(obj); // Adding to Table obj which was created in ApplicationDBConext
+                _db.SaveChanges();    // saving the Database
+                return RedirectToAction("Index"); // to redirect to CategoryList
+            }
+            else return View(obj);
+        }
+        [HttpGet]
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.CategoryList.Find(Id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
 
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePost(int? CategoryId)
+        {
+            
+            var obj = _db.CategoryList.Find(CategoryId);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.CategoryList.Remove(obj); // Adding to Table obj which was created in ApplicationDBConext
+            _db.SaveChanges();    // saving the Database
+            return RedirectToAction("Index"); // to redirect to CategoryList
+            
+            
+        }
         //Post create
         [HttpPost]
         [ValidateAntiForgeryToken]

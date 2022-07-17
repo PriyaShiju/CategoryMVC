@@ -14,5 +14,7 @@ namespace CategoryMVC.Data
         }
         //fetches all the data from Category Table
         public DbSet<Category> CategoryList { get; set; }
+
+        
     }
 }
